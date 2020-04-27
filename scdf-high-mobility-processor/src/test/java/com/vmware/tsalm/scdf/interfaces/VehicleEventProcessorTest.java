@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vmware.tsalm.scdf.domain.model.VehicleLocationData;
 import com.vmware.tsalm.scdf.domain.model.service.VehicleInformationService;
+import com.vmware.tsalm.scdf.infrastructure.service.model.HighMobilityConfigurationProperties;
 import com.vmware.tsalm.scdf.interfaces.model.InputVehicleEventData;
 import com.vmware.tsalm.scdf.interfaces.model.InputVehicleEventData.VehicleBaseData;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +37,9 @@ class VehicleEventProcessorTest {
     
     @MockBean
     private VehicleInformationService vehicleInformationServiceMock;
+
+    @MockBean
+    private HighMobilityConfigurationProperties highMobilityConfigurationPropertiesValidationsMock;
 
     private SimpleDateFormat format;
 
