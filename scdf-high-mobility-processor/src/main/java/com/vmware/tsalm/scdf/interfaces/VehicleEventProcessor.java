@@ -7,11 +7,13 @@ import com.vmware.tsalm.scdf.interfaces.model.InputVehicleEventData;
 import com.vmware.tsalm.scdf.interfaces.model.OutputVehicleEventData;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class VehicleEventProcessor {
@@ -23,6 +25,7 @@ public class VehicleEventProcessor {
     Function<String, OutputVehicleEventData> processData() {
         return inputDataString -> {
             final InputVehicleEventData inputData = getInputDataFromString(inputDataString);
+            log.info("Received event {} for vehicle {}", inputData.getEvent().getType(), inputData.getVehicle().getVin());
             if (inputData.isVehicleLocationChangedEvent()) {
                 final VehicleLocationData vehicleLocationData = vehicleInformationService.fetchVehicleLocation();
                 return new OutputVehicleEventData(inputData, vehicleLocationData);
