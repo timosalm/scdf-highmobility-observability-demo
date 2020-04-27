@@ -2,30 +2,39 @@ package com.vmware.tsalm.scdf.interfaces.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class InputVehicleEventData {
-    VehicleBaseData vehicle;
-    VehicleEvent event;
+    private VehicleBaseData vehicle;
+    private VehicleEvent event;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    @Value
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class VehicleBaseData {
-        String vin;
+        private String vin;
         @JsonProperty("serial_number")
-        String serialNumber;
+        private String serialNumber;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    @Value
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class VehicleEvent {
-        String type;
+        private String type;
         @JsonProperty("received_at")
-        Date receivedAt;
+        private Date receivedAt;
     }
 
     public boolean isVehicleLocationChangedEvent() {
